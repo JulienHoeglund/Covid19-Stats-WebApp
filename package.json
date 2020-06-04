@@ -1,0 +1,18 @@
+{
+  "name": "riot-config-example",
+  "version": "1.0.0",
+  "description": "Riot with riot.config.js",
+  "private": true,
+  "scripts": {
+    "start": "npm run watch & npm run server",
+    "build": "npx riot --config riot.config.js src/main.js",
+    "watch": "npx riot --config riot.config.js -w src/main.js",
+    "server": "serve"
+  },
+  "devDependencies": {
+    "@riotjs/cli": "^4.0.3",
+    "@riotjs/compiler": "^4.8.5",
+    "serve": "^11.3.1"
+  },
+  "license": "MIT"
+}
