@@ -1,4 +1,4 @@
-import {component} from './node_module/riot'
+import {component} from './riot'
 import App from './app.riot'
 
 
