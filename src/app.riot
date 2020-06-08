@@ -1,25 +1,22 @@
 <app>
-  <h1>{ title }</h1>
-  <p>Le covid19</p>
-
+  <h1>COVID 19</h1>
 
   <script>
-    const name = 'coucou'
-
+  import axios from './node_module/axios';
     export default {
-      title: `Hello ${ name }!`
+      name : 'Covid19',
+      components : {
+
+      },
+      async created(){
+        const {data} = await axios.get("https://api.covid19api.com/summary ");
+        console.log(data);
+      }
     }
   </script>
 
 
   <style>
-    :host {
-      --riot-color: #f04;
-    }
-
-    h1 {
-      color: var(--riot-color);
-      border-bottom: 1px solid var(--riot-color);
-    }
+   
   </style>
 </app>
