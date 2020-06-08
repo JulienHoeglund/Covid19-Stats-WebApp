@@ -1,0 +1,39 @@
+<random>
+  <h3>{ props.title }</h3>
+
+  <button onclick={ generate }>
+    Generate
+  </button>
+
+  <h1>
+    { state.number }
+  </h1>
+
+  <logs logs={ state.logs } onclear={ clearLogs }></logs>
+
+  <script>
+    import Logs from './logs.riot'
+    import axios from 'axios';
+    import {initDB} from '../data/localstorage.js'
+    import {getCountries} from '../data/localstorage.js'
+    import {getCountry} from '../data/localstorage.js'
+    
+    export default {
+      components: {
+        Logs
+      },
+      state: {
+        number: null,
+        logs: [],
+      },
+      
+      async onMounted(){
+          console.log('countries:');
+          //test localstorage
+          initDB();
+          let {data} = await axios.get("https://api.covid19api.com/countries");
+          console.log(data);
+      }
+    }
+  </script>
+</random>

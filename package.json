@@ -1,23 +1,35 @@
 {
-  "name": "riot-config-example",
-  "version": "1.0.0",
-  "description": "Riot with riot.config.js",
-  "private": true,
-  "scripts": {
-    "start": "npm run watch & npm run server",
-    "build": "npx riot --config riot.config.js src/main.js",
-    "watch": "npx riot --config riot.config.js -w src/main.js",
-    "server": "serve"
-  },
-  "devDependencies": {
-    "@riotjs/cli": "^4.0.3",
-    "@riotjs/compiler": "^4.9.1",
-    "rollup-plugin-riot": "^4.0.2",
-    "serve": "^11.3.1"
-  },
+  "name": "riot-webpack",
+  "version": "0.0.1",
+  "description": "Example of webpack and riot",
+  "repository": "riot/examples",
+  "main": "app/main.js",
+  "author": "Zhomart Mukhamejanov",
   "license": "MIT",
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --inline --watch --hot --colors -d --port 3000"
+  },
+  "keywords": [
+    "riot",
+    "webpack"
+  ],
+  "devDependencies": {
+    "@babel/core": "7.4.5",
+    "@babel/preset-env": "7.4.5",
+    "babel-loader": "^8.0.6",
+    "riot": "^4.0.5",
+    "@riotjs/compiler": "^4.2.5",
+    "@riotjs/hot-reload": "4.0.0",
+    "@riotjs/webpack-loader": "^4.0.0",
+    "webpack": "^4.33.0",
+    "webpack-cli": "^3.3.2",
+    "webpack-dev-server": "^3.5.1"
+  },
   "dependencies": {
     "axios": "^0.19.2",
-    "rollup": "^2.7.2"
+    "localstoragedb": "^2.3.2"
   }
 }
