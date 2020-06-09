@@ -1,12 +1,17 @@
 <home>
   <h3>{ props.title }</h3>
   {state.pays}
+  <Table></Table>
+  
   <script>
     import axios from 'axios';
-    import {getCountries} from '../data/localstorage.js'
-    
+    import {getCountries} from '../data/localstorage.js';
+    import Table from './table.riot';
+
     export default {
-      
+      components:{
+        Table
+      },
       async onMounted(){
           this.state = {
           pays: await getCountries(),
