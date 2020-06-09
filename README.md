@@ -1,6 +1,4 @@
-# Webpack
-
-This is a simple covid-19 app whichs shows statistics per country.
+### This is a simple covid-19 app which shows statistics per country.
 
 ## Run locally
 
