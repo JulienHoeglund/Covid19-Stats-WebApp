@@ -19,7 +19,7 @@
   "devDependencies": {
     "@babel/core": "7.4.5",
     "@babel/preset-env": "7.4.5",
-    "@riotjs/compiler": "^4.2.5",
+    "@riotjs/compiler": "^4.9.1",
     "@riotjs/hot-reload": "4.0.0",
     "@riotjs/webpack-loader": "^4.0.0",
     "babel-loader": "^8.0.6",
@@ -29,6 +29,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "@riotjs/route": "^5.3.2",
     "axios": "^0.19.2",
     "chart.js": "^2.9.3",
     "core-js": "^3.6.5",
