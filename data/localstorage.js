@@ -46,6 +46,6 @@ export async function getCountries(){
 }
     
 export async function getCountry(name){
-    let {data} = await axios.get("https://api.covid19api.com/total/dayone/country/france");
+    let {data} = await axios.get("https://api.covid19api.com/total/dayone/country/"+name);
     return data;
 }     
