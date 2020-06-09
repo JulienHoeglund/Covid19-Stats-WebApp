@@ -1,7 +1,7 @@
 import '@riotjs/hot-reload'
 import {component} from 'riot'
-import Random from './random.riot'
+import Home from './home.riot'
 
-component(Random)(document.getElementById('app'), {
-  title: 'Hi there!'
+component(Home)(document.getElementById('app'), {
+  title: 'Covid-19'
 })

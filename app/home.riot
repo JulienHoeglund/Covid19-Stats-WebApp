@@ -1,0 +1,17 @@
+<home>
+  <h3>{ props.title }</h3>
+  {state.pays}
+  <script>
+    import axios from 'axios';
+    import {getCountries} from '../data/localstorage.js'
+    
+    export default {
+      
+      async onMounted(){
+          this.state = {
+          pays: await getCountries(),
+        }
+      }
+    }
+  </script>
+</home>
