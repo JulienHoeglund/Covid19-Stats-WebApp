@@ -1,6 +1,6 @@
 # Webpack
 
-This is a simple example of using webpack with riot. It uses webpack loader [@riotjs/webpack-loader](https://www.npmjs.com/package/@riotjs/webpack-loader).
+This is a simple covid-19 app whichs shows statistics per country.
 
 ## Run locally
 
