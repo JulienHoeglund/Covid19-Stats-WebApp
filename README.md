@@ -1,10 +1,10 @@
-# Router - Complex example
+# Router - Page switcher
 
-This is a relatively complex example for showing how to use Riot Router to handle the URL.
+This is a simple example for showing how to use Riot Router to handle the URL.
 
 ## Have a play
 
-[Open this example on Plunker](https://riot.js.org/examples/plunker/?app=router-complex)
+[Open this example on Plunker](https://riot.js.org/examples/plunker/?app=router-page-switcher)
 
 ## Run locally
 
