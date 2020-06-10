@@ -2,6 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 
 module.exports = {
+  mode : 'dev',
   entry: './app/main.js',
   output: {
     path: path.resolve(__dirname, 'public'),

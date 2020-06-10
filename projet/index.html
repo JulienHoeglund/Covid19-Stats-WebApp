@@ -1,41 +1,11 @@
+<!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Covid-19</title>
-  <!-- CSS only -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
- </head>
-
- <body>
-   <div id="app">
-
-      <app></app>
-      <!-- riot tags -->
-      <script ype="riot" src="app-main.riot"></script>
-      <script type="riot" src="app-navi.riot"></script>
-      <script type="riot" src="app-help.riot"></script>
-      <script type="riot" src="app.riot"></script>
-      <script src="https://unpkg.com/riot@4/riot+compiler.min.js"></script>
-      <script src="https://unpkg.com/@riotjs/route/route.js"></script>
-  
-    <script>
-          riot.register('router', route.Router)
-        riot.register('route', route.Route)
-  
-        riot.compile().then(function() {
-          riot.mount('app')
-        });
-    </script>
-   </div>
-    
-
-  <script src="/app/todo.riot" type="riot"></script>
-  
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-  <script src="public/bundle.js" charset="utf-8"></script>
-
-
+  <meta charset="utf-8">
+  <title>Covid 19</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="public/bundle.js"></script>
 </body>
 </html>
