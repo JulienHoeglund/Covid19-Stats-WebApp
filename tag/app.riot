@@ -2,37 +2,41 @@
    <router >
 
     <!-- These links will trigger automatically HTML5 history events -->
-    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-      <a class="nav-link" href="/#home">Home</a>
-      <a class="nav-link" href="/#table">Table</a>
-      <a class="nav-link" href="/#team/gianluca">Gianluca</a>
-      <a class="nav-link" href="/#hello">Hello</a>
- 
+    <nav class=" navbar-dark bg-dark">
+     
+       <ul class="nav justify-content-center ">
+      <li class="nav-item active">
+        <a class="navbar-brand " href="/#hello">Accueil</a>
+      </li>
+      <li class="nav-item">
+        <a class="navbar-brand" href="/#table">Choix de pays</a>
+      </li>
+    </ul>
+    
     </nav>
 
 
+
     <!-- Your application routes will be rendered here -->
-    <route path="/#home">
-      Home page
+     <route path="/#hello">
+      <message ></message>
     </route>
     <route path="/#table">
       <tables></tables>
     </route>
-    <route path="/#team/:person">
-      Hello dear { route.params[0] }
-    </route>
-    <route path="/#hello">
-      <message text= "hello word"></message>
-    </route>
+   
   </router>
   
   <!--Controller-->
   <script>
+
     export default {
+      
       components: {
         router: route.Router,
-        route: route.Route,
+        route: route.Route
       }
+      
     }
   </script>
 
