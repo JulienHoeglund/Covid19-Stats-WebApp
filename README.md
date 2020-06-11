@@ -1,10 +1,7 @@
-# Router - Page switcher
+# Covid19 app
 
-This is a simple example for showing how to use Riot Router to handle the URL.
+This is a simple app for showing Covid19 statistics.
 
-## Have a play
-
-[Open this example on Plunker](https://riot.js.org/examples/plunker/?app=router-page-switcher)
 
 ## Run locally
 
@@ -17,7 +14,6 @@ $ npm install -g superstatic
 Download or clone this repo, then run the command.
 
 ```bash
-$ cd to/this/dir
 $ superstatic
 ```
 
