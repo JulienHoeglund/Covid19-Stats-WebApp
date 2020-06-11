@@ -1,13 +1,16 @@
 <message>
   <div class="jumbotron">
-  <h1 class="display-4">Statistique du {date} </h1>
+  <h1 class="display-4">Statistique du {state.date} </h1>
   <p class="lead">Les données sont mises à jour toute les 6h.</p>
  
 </div>
 
 <script>
+
     
-  var date = 1+1;
+  state : {
+    date = moment().format("MMM Do YY");
+  }
      
     
 </script>

@@ -29,6 +29,7 @@ async function updateAllCountries(){
     lib.insert("pays",data);
 }
 export async function getCountries(){
+    console.log("coucou")
     //query localstorage
     if(lib.tableExists("pays") == false){
         await initDB();
