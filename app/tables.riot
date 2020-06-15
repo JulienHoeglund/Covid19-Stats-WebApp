@@ -1,28 +1,30 @@
 <tables>
-<input type="text" id="search" onKeyUp="tri()" placeholder="Recherche Pays">
+<form class="form-inline my-2 my-lg-3">
+<input class="form-control mr-sm-2" type="text" id="search" onKeyUp="tri()" placeholder="Recherche Pays">
+</form>
   <table class="table"   data-toggle="table" id="pays">
   <thead>
     <tr>
       <th scope="col" data-sortable="true">Pays</th>
-      <th scope="col" data-sortable="true">Cas</th>
-      <th scope="col" data-sortable="true">Guéris</th>
-      <th scope="col" data-sortable="true">Morts</th>
-      <th scope="col" data-sortable="true">Cas total</th>
-      <th scope="col" data-sortable="true">Guéris total</th>
-      <th scope="col" data-sortable="true">Morts total</th>
+      <th scope="col" class="text-info" data-sortable="true">Cas</th>
+      <th scope="col" class="text-success" data-sortable="true">Guéris</th>
+      <th scope="col" class="text-danger" data-sortable="true">Morts</th>
+      <th scope="col" class="text-info" data-sortable="true">Cas total</th>
+      <th scope="col" class="text-success" data-sortable="true">Guéris total</th>
+      <th scope="col" class="text-danger" data-sortable="true">Morts total</th>
     </tr>
   </thead>
   <tbody>
     <tr each={pays in state.name}>
       <td>
-        <a href='/#table/pays/{pays.Country}'>{pays.Country}</a>
+        <a class="text-decoration-none text-dark" href='/#table/pays/{pays.Country}'>{pays.Country}</a>
       </td>
-      <td>{pays.NewConfirmed}</td>
-      <td>{pays.NewRecovered}</td>
-      <td>{pays.NewDeaths}</td>
-      <td>{pays.TotalConfirmed}</td>
-      <td>{pays.TotalRecovered}</td>
-      <td>{pays.TotalDeaths}</td>
+      <td class="text-info">{pays.NewConfirmed}</td>
+      <td class="text-success">{pays.NewRecovered}</td>
+      <td class="text-danger">{pays.NewDeaths}</td>
+      <td class="text-info">{pays.TotalConfirmed}</td>
+      <td class="text-success">{pays.TotalRecovered}</td>
+      <td class="text-danger">{pays.TotalDeaths}</td>
     </tr>
   </tbody>
 </table>
