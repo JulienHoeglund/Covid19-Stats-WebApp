@@ -15,8 +15,7 @@
   <tbody>
     <tr each={pays in state.name}>
       <td>
-        <a href="/pays/{pays.Country}"></a>
-        {pays.Country}
+        <a href='/pays/{pays.Country}'>{pays.Country}</a>
       </td>
       <td>{pays.NewConfirmed}</td>
       <td>{pays.NewRecovered}</td>
@@ -26,16 +25,22 @@
       <td>{pays.TotalDeaths}</td>
     </tr>
   </tbody>
-  <route path='/pays'>
-    <pays/>
-  </route>
 </table>
+  <router>
+    <route path='/pays'>
+      <pays nom={paysSelectionne}/>
+    </route>
+  </router>
   <script>
     import {getCountries} from '../data/localstorage.js';
     import Pays from './pays.riot'
+    import lazy from '@riotjs/lazy'
+    import { Router, Route } from '@riotjs/route'
+    import Loader from './loader.riot'
+
     export default {
       components: {
-          Pays
+        Pays: lazy(Loader, () => import('./pays.riot')),
       },
       async onMounted() {
         this.state.name = await getCountries()
