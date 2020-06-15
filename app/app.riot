@@ -1,0 +1,40 @@
+<app>
+  <h1>{props.message}</h1>
+  <router>
+    <nav class=" navbar-dark bg-dark">
+       <ul class="nav justify-content-center ">
+      <li class="nav-item active">
+        <a class="navbar-brand " href="/#hello">Accueil</a>
+      </li>
+      <li class="nav-item">
+        <a class="navbar-brand" href="/#table">Choix de pays</a>
+      </li>
+    </ul>
+    </nav>
+    <route path='/'>
+      <home/>
+    </route>
+    <message></message>
+    <stats></stats>
+     <pays></pays>
+    <tables></tables>
+  </router>
+  <script>
+    import lazy from '@riotjs/lazy'
+    import { Router, Route } from '@riotjs/route'
+    import Loader from './loader.riot'
+    import Message from './message.riot'
+    import Tables from './tables.riot'
+    import Stats from './stats.riot'
+
+    export default {
+      components: {
+        Router,
+        Route,
+        Message,
+        Stats,
+        Tables
+      }
+    }
+  </script>
+</app>

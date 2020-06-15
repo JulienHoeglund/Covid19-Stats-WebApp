@@ -1,0 +1,21 @@
+<message>
+  <div class="jumbotron">
+  <h1 class="display-4">Données concernant le COVID 19</h1>
+  <h2 class="display-4">Statistique du {state.date} </h2>
+  <p class="lead">Les données sont mises à jour toute les 6h.</p>
+</div>
+<script>
+ const moment = require('moment')
+ moment.locale('fr')
+
+ 
+export default{
+  onMounted() {
+    const date = ""
+    this.update({
+        date : moment().format("Do MMM YYYY")
+      })
+  }
+}
+</script>
+</message>
