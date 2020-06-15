@@ -1,5 +1,4 @@
 <app>
-  <h1>{props.message}</h1>
   <router>
     <nav class=" navbar-dark bg-dark">
        <ul class="nav justify-content-center ">
@@ -11,29 +10,32 @@
       </li>
     </ul>
     </nav>
-    <route path='/'>
-      <home/>
+
+     <route path='/#hello'>
+      <message/>
     </route>
-    <message></message>
-    <stats></stats>
-     <pays></pays>
-    <tables></tables>
+    <route path='/#table'>
+      <tables/>
+    </route>
+    <route path='/pays/Afghanistan'>
+      <pays/>
+    </route>
   </router>
+
   <script>
     import lazy from '@riotjs/lazy'
     import { Router, Route } from '@riotjs/route'
     import Loader from './loader.riot'
-    import Message from './message.riot'
-    import Tables from './tables.riot'
-    import Stats from './stats.riot'
+
 
     export default {
       components: {
         Router,
         Route,
-        Message,
+        Message: lazy(Loader, () => import('./message.riot')),
         Stats : lazy(Loader, () => import('./stats.riot')),
-        Tables
+        Tables : lazy(Loader, () => import('./tables.riot')),
+        Pays : lazy(Loader, () => import('./pays.riot')),
       }
     }
   </script>
