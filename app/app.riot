@@ -1,5 +1,5 @@
 <app>
-  <router >
+  <router>
     <nav class=" navbar-dark bg-dark">
        <ul class="nav justify-content-center ">
       <li class="nav-item active">
@@ -18,7 +18,7 @@
     <route path='/#table'>
       <tables/>
     </route>
-    <route path='/#pays/:country'>
+    <route path='/#table/pays/:country'>
       <pays/>
     </route>
   </router>
@@ -28,7 +28,6 @@
     import { Router, Route } from '@riotjs/route'
     import Loader from './loader.riot'
 
-
     export default {
       components: {
         Router,
@@ -37,6 +36,7 @@
         Stats : lazy(Loader, () => import('./stats.riot')),
         Tables : lazy(Loader, () => import('./tables.riot')),
         Pays : lazy(Loader, () => import('./pays.riot')),
+
       }
     }
   </script>
