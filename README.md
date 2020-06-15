@@ -1,20 +1,20 @@
-# Covid19 app
+# Webpack
 
-This is a simple app for showing Covid19 statistics.
-
+This is a simple example demonstrates how to lazy load Riot.js components [@riotjs/lazy](https://www.npmjs.com/package/@riotjs/lazy).
 
 ## Run locally
 
-Install superstatic if you don't have.
+Download or clone this repo.
+
+Install packages.
 
 ```bash
-$ npm install -g superstatic
+$ npm install
 ```
-
-Download or clone this repo, then run the command.
+And then run the server using `webpack-dev-server` or any possible way you know
 
 ```bash
-$ superstatic
+$ npm start
 ```
 
-Open the URL shown in your browser.
+- Open [http://localhost:3000/](http://localhost:3000/)
