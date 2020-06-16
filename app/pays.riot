@@ -1,101 +1,73 @@
 <pays>
-    <h2 >Pays </h2>
+    <h2 >{state.nom}</h2>
     <div style=" width:1000px; height:600px;""> 
         <canvas id="chartpays" ></canvas>
     </div>
-
-    <h2 >Différentiel</h2>
-     <div style=" width:1000px; height:600px;""> 
-        <canvas id="chartpays2" ></canvas>
-    </div>
-
     <script>
     import Chart from 'chart.js';
-    import {getCountry} from '../data/localstorage.js';
-    
+    const moment = require('moment')
+    moment.locale('fr')
+
     export default {
+        getPlottingData(data,type){
+            let cleanData = []
+            let cleanRow = {}
+            data.forEach(function (row){
+                let date = new Date(row['Date'])
+                cleanRow = {'x':date,'y':row[type]}          
+                cleanData.push(cleanRow)
+            })
+            return cleanData
+        },
        async onMounted() {
-        
-          this.state.name = await getCountry("france")
-          this.update();
-        
-           var ctx = document.getElementById('chartpays').getContext("2d");
-           var options = { 
-                responsive: true,
-                maintainAspectRatio: true
-            }
-            var myChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                    datasets: [
-                        {
-                        label: 'Cas',
-                        data: [4, 6, 13, 9, 6, 7],
-                        backgroundColor: '#077187',
-                        borderColor:  '#74A57F',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Guéris',
-                        data: [3,5, 3, 21, 21, 3],
-                        backgroundColor:'#31E981',
-                        borderColor: '#4E5E66',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Morts',
-                        data: [12, 19, 3, 5, 2, 3],
-                        backgroundColor:  "#402A2C",
-                        borderColor: '#E06D06',
-                        borderWidth: 1
-                    }
-                    ]
-                },
-                options: {
-                    
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }]
-                    }
-                }
-            });
-             var ctx = document.getElementById('chartpays2').getContext("2d");
-           var options = { 
-                responsive: true,
-                maintainAspectRatio: true
-            }
-            var myChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                    datasets: [ {
-                        label: 'Morts',
-                        data: [12, 19, 3, 5, 2, 3],
-                        backgroundColor:  "#402A2C",
-                        borderColor: '#E06D06',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }]
-                    }
-                }
-            });
+        this.update()
+        let data = await this.props.pays
+        this.update({
+            cas: this.getPlottingData(data,'Confirmed'),
+            morts: this.getPlottingData(data,'Deaths'),
+            gueris: this.getPlottingData(data,'Recovered'),
+            nom: data[0].Country
+        })
+        var ctx = document.getElementById('chartpays').getContext("2d");
+        var options = { 
+            responsive: true,
+            maintainAspectRatio: true
         }
-
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                datasets: [
+                    {
+                    label: 'Cas',
+                    data: this.state.cas,
+                    backgroundColor: '#077187',
+                    borderColor:  '#74A57F',
+                    borderWidth: 1
+                    },
+                    {
+                    label: 'Guéris',
+                    data: this.state.gueris,
+                    backgroundColor:'#31E981',
+                    borderColor: '#4E5E66',
+                    borderWidth: 1
+                    },
+                    {
+                        label: 'Morts',
+                        data: this.state.morts,
+                        backgroundColor:  "#402A2C",
+                        borderColor: '#E06D06',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    xAxes: [{type: 'time'}
+                    ]
+                }
+            }
+        });
+       }
     }
-
-    
-
     </script>
 </pays>

@@ -19,7 +19,7 @@
       <tables/>
     </route>
     <route path='/#table/pays/:country'>
-      <pays/>
+      <pays pays={getCountryData(route)}/>
     </route>
   </router>
 
@@ -27,6 +27,7 @@
     import lazy from '@riotjs/lazy'
     import { Router, Route } from '@riotjs/route'
     import Loader from './loader.riot'
+    import {getCountry} from '../data/localstorage.js';
 
     export default {
       components: {
@@ -37,6 +38,11 @@
         Tables : lazy(Loader, () => import('./tables.riot')),
         Pays : lazy(Loader, () => import('./pays.riot')),
 
+      },
+        async getCountryData(route) {
+          const nom = route.params
+          let countryData = await getCountry(nom[0])
+          return countryData;
       }
     }
   </script>
