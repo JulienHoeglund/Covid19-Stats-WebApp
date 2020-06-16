@@ -1,6 +1,6 @@
-# Webpack
+# Covid-19
 
-This is a simple example demonstrates how to lazy load Riot.js components [@riotjs/lazy](https://www.npmjs.com/package/@riotjs/lazy).
+Appli web de stats sur le covid-19
 
 ## Run locally
 
