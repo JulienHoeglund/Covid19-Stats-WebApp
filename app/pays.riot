@@ -2,6 +2,8 @@
     <h2 >{state.nom}</h2>
     <div style=" width:1000px; height:600px;""> 
         <canvas id="chartpays" ></canvas>
+    <h2 >Différentiel</h2>
+
         <canvas id="chartpaysdiff" ></canvas>
     </div>
     <script>
@@ -11,7 +13,6 @@
 
     export default {
         getPlottingData(data,type){
-            console.log(type)
             let cleanData = []
             let cleanRow = {}
             let before = 0
@@ -20,8 +21,8 @@
                 let date = new Date(row['Date'])
                 cleanRow = {'x':date,'y':row[type]}          
                 cleanData.push(cleanRow)
+
             })
-            console.log(cleanData)
             return cleanData
         },
         diff(data){
@@ -35,6 +36,18 @@
                 Cbefore = row['Confirmed']
                 Dbefore = row['Deaths']
                 Rbefore = row['Recovered']
+                if(row['ConfirmedDiff'] < 0)
+                {
+                    row['ConfirmedDiff'] = 0
+                }
+                if(row['DeathsDiff'] < 0)
+                {
+                    row['DeathsDiff'] = 0
+                }
+                if(row['RecoveredDiff'] <0 || row['RecoveredDiff'] > 50000)
+                {
+                    row['RecoveredDiff'] = 0
+                }
             })
             return data;
         },
