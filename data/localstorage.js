@@ -44,14 +44,12 @@ export async function initDBUnPays(){
     }
     lib.createTableWithData("unpays", unpays);
     lib.commit();
-    lib.alterTable("unpays","lastUpdate");
+    lib.alterTable("unpays",["lastUpdate","confirmedDiff","recoveredDiff","deathsDiff"]);
     lib.commit();
 }
 export async function getCountry(country){
-    console.log('1')
     //query localstorage
     if(!lib.tableExists("unpays")){
-        console.log('INIT')
         await initDBUnPays();
     }
     //check if exists
@@ -59,18 +57,15 @@ export async function getCountry(country){
     let nom = getName(country)
     let pays = lib.queryAll("unpays", {
         query: {Country: nom}});
-    console.log(pays)
     //6h old data ?
-    console.log('2')
-
+    lib.deleteRows("unpays",{Country:country});
+    await insertCountryData(country);
     if(pays[0]){
         if(checkDate(pays.lastUpdate)){
-            console.log('21')
             return pays;
         }
         //update data
         else{
-            console.log('3')
         //replace rows with new data
             lib.deleteRows("unpays",{Country:country});
             await insertCountryData(country);
@@ -80,7 +75,6 @@ export async function getCountry(country){
     }
     //first insert
     else{
-        console.log('4')
         await insertCountryData(country);
         return lib.queryAll("unpays", {
             query: {Country: nom}});
@@ -88,7 +82,7 @@ export async function getCountry(country){
 }
 async function insertCountryData(country){
     let {data} = await axios.get("https://api.covid19api.com/total/dayone/country/"+country);
-    data.forEach(function (row){
+    data.forEach(function (row,index){
         row['lastUpdate'] = moment().format(); 
         lib.insert("unpays",row);
     })

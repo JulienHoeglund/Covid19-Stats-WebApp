@@ -2,6 +2,7 @@
     <h2 >{state.nom}</h2>
     <div style=" width:1000px; height:600px;""> 
         <canvas id="chartpays" ></canvas>
+        <canvas id="chartpaysdiff" ></canvas>
     </div>
     <script>
     import Chart from 'chart.js';
@@ -10,25 +11,48 @@
 
     export default {
         getPlottingData(data,type){
+            console.log(type)
             let cleanData = []
             let cleanRow = {}
+            let before = 0
+            let diff = 0
             data.forEach(function (row){
                 let date = new Date(row['Date'])
                 cleanRow = {'x':date,'y':row[type]}          
                 cleanData.push(cleanRow)
             })
+            console.log(cleanData)
             return cleanData
+        },
+        diff(data){
+            let Cbefore = 0
+            let Rbefore = 0
+            let Dbefore = 0
+            data.forEach(function (row){
+                row['ConfirmedDiff'] = row['Confirmed'] - Cbefore  
+                row['RecoveredDiff'] = row['Recovered'] - Rbefore  
+                row['DeathsDiff'] = row['Deaths'] - Dbefore  
+                Cbefore = row['Confirmed']
+                Dbefore = row['Deaths']
+                Rbefore = row['Recovered']
+            })
+            return data;
         },
        async onMounted() {
         this.update()
         let data = await this.props.pays
+        data = this.diff(data)
         this.update({
             cas: this.getPlottingData(data,'Confirmed'),
             morts: this.getPlottingData(data,'Deaths'),
             gueris: this.getPlottingData(data,'Recovered'),
+            casDiff: this.getPlottingData(data,'ConfirmedDiff'),
+            mortsDiff: this.getPlottingData(data,'DeathsDiff'),
+            guerisDiff: this.getPlottingData(data,'RecoveredDiff'),
             nom: data[0].Country
         })
         var ctx = document.getElementById('chartpays').getContext("2d");
+        var ctxDiff = document.getElementById('chartpaysdiff').getContext("2d");
         var options = { 
             responsive: true,
             maintainAspectRatio: true
@@ -40,21 +64,49 @@
                     {
                     label: 'Cas',
                     data: this.state.cas,
-                    backgroundColor: '#077187',
                     borderColor:  '#74A57F',
                     borderWidth: 1
                     },
                     {
                     label: 'Guéris',
                     data: this.state.gueris,
-                    backgroundColor:'#31E981',
                     borderColor: '#4E5E66',
                     borderWidth: 1
                     },
                     {
                         label: 'Morts',
                         data: this.state.morts,
-                        backgroundColor:  "#402A2C",
+                        borderColor: '#E06D06',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    xAxes: [{type: 'time'}
+                    ]
+                }
+            }
+        });
+        var myChart = new Chart(ctxDiff, {
+            type: 'line',
+            data: {
+                datasets: [
+                    {
+                    label: 'Cas',
+                    data: this.state.casDiff,
+                    borderColor:  '#74A57F',
+                    borderWidth: 1
+                    },
+                    {
+                    label: 'Guéris',
+                    data: this.state.guerisDiff,
+                    borderColor: '#4E5E66',
+                    borderWidth: 1
+                    },
+                    {
+                        label: 'Morts',
+                        data: this.state.mortsDiff,
                         borderColor: '#E06D06',
                         borderWidth: 1
                     }
